@@ -1,0 +1,55 @@
+{% set var = ' ' %}
+{% if variable is defined %}
+
+{% set var = variable %}
+{% endif %}
+
+<link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}">
+<body style="background:#e6ffe6">
+	<div class="container" style='background:#d8eac8; height:100%'>
+
+		<nav class="navbar navbar-default">
+		  	<div class="container-fluid">
+			    <div class="navbar-header">
+			      <a class="navbar-brand" href="#">SuperShop</a>
+			    </div>
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="{{ path('gender', {'var': var, 'user_id': user_id}) }}"> Home page </a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li><a href="{{ path('register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+		      <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+		    </ul>
+		  </div>
+		</nav>
+
+		<div class="row">
+			
+			<div class="col col-lg-6">
+
+				{% if variable != " " %}
+						<b>You are logged as {{ variable }}<b>
+				{% endif %}
+					
+				<div style="margin:5%;padding:15px;height:500px; width:500px; background:#ffffff; border: 1px Solid #d8eac8; border-radius:5px">
+							
+					<b>{{ product_name }}<b>
+					<img src="{{ asset('bundles/app/images/'~ product_name ~'.jpg') }}" height="90%" width ="90%"  />
+				</div>
+			</div>
+
+			<div class="col col-lg-6">
+					{% if variable != " " %}
+					
+					<a href="{{ path('book', {'var': var, 'user_id': user_id, 'price': price, 'p_id': p_id, 'product_name': product_name }) }}"><button class="btn btn-primary"> Buy </button></a>
+					{% if form is defined %}
+					
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+				    {{ form_end(form) }}
+					{% endif %}{% endif %}
+					
+			</div>
+		</div>
+	</div>
+</body>

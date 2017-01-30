@@ -1,0 +1,67 @@
+{% set var = ' ' %}
+{% if variable is defined %}
+    {% set var = variable %}
+{% endif %}
+
+<link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}">
+<script src="{{ asset('bundles/app/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<body style="background:#e6ffe6; height: 150%;">
+
+  <div class="container" style='background:#d8eac8; height:100%'>	
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">SuperShop</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="{{ path('gender', {'var': var, 'var2': 'male', 'user_id':user_id}) }}">Male</a></li>
+          <li><a href="{{ path('gender', {'var': var, 'var2': 'female', 'user_id':user_id}) }}">Female </a></li>
+          <li><a href="{{ path('gender', {'var': var, 'user_id':user_id }) }}"> All </a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sort
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ path('gender', {'var': var, 'var3': 'ASC', 'user_id':user_id}) }}">Growingly</a></li>
+              <li><a href="{{ path('gender', {'var': var, 'var3': 'DESC', 'user_id':user_id}) }}">In descending order</a></li>
+            </ul>
+          </li>
+         
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ path('register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+          <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+        </ul>
+      </div>
+    </nav>
+
+  <div class="row">
+
+      {% block body %}
+      {% if variable != " " %}
+             <b style="margin:2%">You are logged as {{ variable }}<b>
+      {% endif %}
+        
+      {% endblock %}
+      <div class="row">
+
+      {% for key in my_product %}
+        	{% set v= key.name %}
+          {% set v2= key.id %}
+
+      		<div class="col-xs-3" style="margin:4%; width:200px; height:200px; background:#ffffff; border: 1px Solid #d8eac8; border-radius:5px"> 
+        			<a href="{{ path('product', {'var': var, 'user_id': user_id, 'price': key.price, 'p_id': v2, 'product_name': v }) }}">
+        			<b>{{ v }}</b>
+        			{{ key.price }}zł 
+        			<img src="{{ asset('bundles/app/images/'~ key.name ~'.jpg') }}" height="90%" width ="90%"  />
+        			</a>
+      		</div>
+      {% endfor %}
+  </div>
+  </div>
+<body>

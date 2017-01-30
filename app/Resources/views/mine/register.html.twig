@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}">
+<body style="background:#e6ffe6; height:120%">
+	<div class="container" style='background:#d8eac8; height:100%'>
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">SuperShop</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="{{ path('gender') }}">  Home page </a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+		    </ul>
+		  </div>
+		</nav>
+		<div class="row">	
+			<div class="col-xs-2">
+				{{ form_start(form) }}
+					{{ form_widget(form) }}
+				{{ form_end(form) }}
+
+			</div>
+		</div>
+	</div>	
